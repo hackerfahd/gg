@@ -6,7 +6,25 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    **v4**.
+
+### **عدّل ملف workflow ليصبح هكذا:**
+
+```yaml name=.github/workflows/build-exe.yml
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: alarm_app_exe
+        path: dist/alarm_app.exe
+```
+
+**لاحظ التغيير في السطر:**
+```yaml
+uses: actions/upload-artifact@v4
+```
+بدلاً من  
+```yaml
+uses: runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -23,7 +41,7 @@ jobs:
       run: pyinstaller --onefile --windowed alarm_app.py
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: alarm_app_exe
         path: dist/alarm_app.exe
